@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Set up Python
+      run: uv python install 3.11
+
+    - name: Install dependencies
+      run: |
+        uv sync --all-extras --dev
+
+    - name: Run full test suite
+      run: |
+        uv run pytest tests/ -v --cov=src --cov-report=xml
+
+    - name: Build package
+      run: |
+        uv build
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          ## What's Changed
+          
+          * See [CHANGELOG.md](CHANGELOG.md) for details
+          
+          ## Installation
+          
+          ```bash
+          # With UV (recommended)
+          uv add hdx-mcp-server
+          
+          # With pip
+          pip install hdx-mcp-server
+          ```
+          
+          ## Quick Start
+          
+          ```bash
+          # Setup
+          git clone https://github.com/your-org/hdx-mcp-server
+          cd hdx-mcp-server
+          uv sync
+          cp env.example .env
+          # Edit .env with your HDX API key
+          
+          # Run
+          uv run python -m hdx_mcp_server
+          ```
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/
+        asset_name: hdx-mcp-server-dist
+        asset_content_type: application/zip
