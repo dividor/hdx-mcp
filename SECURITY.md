@@ -243,7 +243,7 @@ If you suspect your HDX API key has been compromised:
    ```bash
    # Stop the server immediately
    pkill -f hdx_mcp_server.py
-   
+
    # Rotate your HDX API key
    # Update .env with new key
    # Restart server with new key
@@ -324,4 +324,3 @@ For security-related issues:
 ---
 
 **Note**: This security documentation should be reviewed regularly and updated as the server evolves. Consider periodic security audits and penetration testing for production deployments.
-

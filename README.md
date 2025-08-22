@@ -58,7 +58,7 @@ That's it! The server is now running and ready to serve HDX data via MCP.
    ```bash
    # On macOS and Linux
    curl -LsSf https://astral.sh/uv/install.sh | sh
-   
+
    # On Windows
    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
    ```
@@ -73,7 +73,7 @@ That's it! The server is now running and ready to serve HDX data via MCP.
    ```bash
    # Install all dependencies including development tools
    uv sync --all-extras
-   
+
    # Or install only production dependencies
    uv sync
    ```
@@ -82,7 +82,7 @@ That's it! The server is now running and ready to serve HDX data via MCP.
    ```bash
    # Copy environment template
    cp env.example .env
-   
+
    # Edit .env with your HDX API key and settings
    nano .env
    ```
@@ -165,7 +165,7 @@ To use this HDX MCP server with Claude Desktop, you need to configure it in Clau
    ```
 
 3. **Configure Claude Desktop:**
-   
+
    Open Claude Desktop settings and add to your MCP servers configuration:
 
    **Option A: Using Docker (Recommended)**
@@ -368,16 +368,16 @@ To add your own tools alongside the auto-generated ones, modify the `_register_c
 ```python
 def _register_custom_tools(self):
     """Register custom tools alongside the OpenAPI-derived ones."""
-    
+
     @self.mcp.tool("my_custom_tool")
     async def my_custom_tool(param1: str, param2: int = 10) -> Dict[str, Any]:
         """
         Description of my custom tool.
-        
+
         Args:
             param1: Description of parameter 1
             param2: Description of parameter 2 with default value
-        
+
         Returns:
             Dictionary containing the results
         """
@@ -411,7 +411,7 @@ uv run pytest --cov=src --cov-report=html --cov-report=term-missing
 
 # Run specific test categories
 uv run pytest tests/unit/          # Unit tests
-uv run pytest tests/integration/   # Integration tests  
+uv run pytest tests/integration/   # Integration tests
 uv run pytest tests/security/      # Security tests
 
 # Code quality checks
@@ -575,7 +575,7 @@ This project includes comprehensive quality controls:
 
 #### Code Quality Tools
 - **Black**: Code formatting
-- **isort**: Import sorting  
+- **isort**: Import sorting
 - **flake8**: Linting with security and complexity extensions
 - **mypy**: Type checking
 - **bandit**: Security vulnerability scanning

@@ -10,7 +10,8 @@ async def population_data_guidance() -> str:
     """
     Guidance for querying population data from HDX.
 
-    Provides information about available population-related tools and data availability considerations.
+    Provides information about available population-related tools and data
+    availability considerations.
 
     Returns:
         Formatted guidance text for population data queries
@@ -22,7 +23,9 @@ async def population_data_guidance() -> str:
 When working with population data in HDX, these tools are most useful:
 
 ### Primary Population Tools:
-- **baseline_population_get**: Subnational population statistics disaggregated by age and gender from UNFPA and OCHA
+- **baseline_population_get**: Subnational population statistics disaggregated by age
+  and gender from UNFPA and
+    OCHA
 - **affected_people_refugees_get**: Annual refugee and persons of concern data from UNHCR
 - **affected_people_idps_get**: Internally displaced persons statistics
 - **affected_people_returnees_get**: Returnee population data

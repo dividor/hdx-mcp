@@ -3,10 +3,8 @@
 
 import json
 import subprocess
-import threading
 import time
 from contextlib import contextmanager
-from unittest.mock import patch
 
 import pytest
 import requests
@@ -16,7 +14,6 @@ import requests
 def http_server():
     """Start HTTP server for testing"""
     import os
-    import signal
 
     # Start the server in a subprocess
     env = os.environ.copy()
@@ -166,7 +163,8 @@ class TestHTTPTransport:
                         ):
                             content = parsed["result"]["content"][0]["text"]
                             data = json.loads(content)
-                            # Should return either success or error, but with proper structure
+                            # Should return either success or error, but with proper
+                            # structure
                             assert "dataset_hdx_id" in data
                             return
                     except Exception:

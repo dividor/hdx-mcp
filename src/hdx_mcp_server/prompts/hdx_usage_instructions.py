@@ -19,7 +19,8 @@ async def hdx_usage_instructions() -> str:
 
 ## Understanding HDX Data Structure
 
-HDX tools provide access to highly disaggregated humanitarian data. This means data is broken down by multiple dimensions such as:
+HDX tools provide access to highly disaggregated humanitarian data. This means "
+"data is broken down by multiple dimensions such as:
 - **Geographic levels**: Country, admin1 (states/provinces), admin2 (districts/counties)
 - **Demographics**: Age ranges, gender, population groups
 - **Time periods**: Monthly, quarterly, or yearly data points
@@ -27,14 +28,21 @@ HDX tools provide access to highly disaggregated humanitarian data. This means d
 
 ## Critical: Data Coverage and Administrative Level Aggregation
 
-**CRITICAL WARNING**: Data coverage is only determined by the `metadata_data_availability_get` tool. Just because a country is in the system doesn't mean it has data. Always verify data availability before making data queries.
+**CRITICAL WARNING**: Data coverage is only determined by the
+`metadata_data_availability_get` tool. Just because a country is in the system
+doesn't mean it has data. Always verify data availability before making data queries.
 
-**IMPORTANT**: Data availability varies by country and administrative level. Some countries have data only at admin level 0 (country), others at admin level 1 (states/provinces), and some at admin level 2 (districts/counties).
+**IMPORTANT**: Data availability varies by country and administrative level.
+Some countries have data only at admin level 0 (country), others at admin level 1
+(states/provinces), and some at admin level 2 (districts/counties).
 
 ### Before Making ANY Data Queries
-1. **ALWAYS check data coverage first** using `metadata_data_availability_get` for the target country
-2. **Verify that data actually exists** - presence in location metadata doesn't guarantee data availability
-3. **Identify the lowest available admin level** for the country (0 = country, 1 = state, 2 = district)
+1. **ALWAYS check data coverage first** using `metadata_data_availability_get`
+   for the target country
+2. **Verify that data actually exists** - presence in location metadata doesn't
+   guarantee data availability
+3. **Identify the lowest available admin level** for the country
+   (0 = country, 1 = state, 2 = district)
 4. **Query at the lowest available level** to avoid excessive data retrieval
 
 ### Example: Getting Total Population for Country X
@@ -57,22 +65,27 @@ HDX tools provide access to highly disaggregated humanitarian data. This means d
 - **Accuracy**: Ensures you're getting the most appropriate data level
 - **Resource optimization**: Avoids overwhelming the API with massive datasets
 
-**Rule of thumb**: For aggregate questions (totals, country-wide statistics), always use the highest administrative level (lowest number) that has data available.
+**Rule of thumb**: For aggregate questions (totals, country-wide statistics),
+always use the highest administrative level (lowest number) that has data available.
 
 ## Universal Pagination Support
 
-**🔄 IMPORTANT: You can page through results using `limit` and `offset` parameters on ALL HDX tools.**
+**🔄 IMPORTANT: You can page through results using `limit` and `offset`
+parameters on ALL HDX tools.**
 
 ### Default Behavior
 - Most HDX tools return data with a **default limit of 10 records**
 - This may only show a small subset of available data
-- The API can return hundreds or thousands of records for comprehensive datasets
-- **All tools support pagination** - use `limit` and `offset` to access complete datasets
+- The API can return hundreds or thousands of records for comprehensive
+  datasets
+- **All tools support pagination** - use `limit` and `offset` to access complete
+  datasets
 
 ### Strategies for Getting Complete Data
 
 #### 1. Check if Parameters Accept 'all'
-Some parameters (like `age_range`, `gender`, `population_group`) accept `'all'` as a value:
+Some parameters (like `age_range`, `gender`, `population_group`) accept
+`'all'` as a value:
 ```
 age_range: 'all'
 gender: 'all'
@@ -138,7 +151,8 @@ Instead of retrieving all data, consider asking users to be more specific:
 
 2. Check data coverage and admin levels (MANDATORY):
    → metadata_data_availability_get (location_code="AFG", limit=100)
-   (Note: Verify data actually exists, then check which admin levels have data - use the lowest available)
+   (Note: Verify data actually exists, then check which admin levels have data
+   - use the lowest available)
 
 3. Get specific data at appropriate admin level:
    → affected_people_idps_get (location_code="AFG", admin_level=0, limit=100)

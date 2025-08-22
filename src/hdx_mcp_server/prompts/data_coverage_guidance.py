@@ -20,7 +20,9 @@ async def data_coverage_guidance() -> str:
 
 ## Critical Understanding: Data Coverage is NOT Universal
 
-**⚠️ ESSENTIAL RULE**: Just because a country is listed in location or admin metadata doesn't mean it has actual data in HDX. You MUST use the `metadata_data_availability_get` tool to confirm data availability.
+**⚠️ ESSENTIAL RULE**: Just because a country is listed in location or admin
+metadata doesn't mean it has actual data in HDX. You MUST use the
+`metadata_data_availability_get` tool to confirm data availability.
 
 ## How Data Coverage Works
 
@@ -115,7 +117,8 @@ Step 3: Query at appropriate level
 → affected_people_refugees_get(location_code="SOM", admin_level=1)
 
 Step 4: If no data found, inform user:
-"Somalia does not have refugee data available in HDX. Available data types are: [list from availability check]"
+"Somalia does not have refugee data available in HDX. Available data types "
+"are: [list from availability check]"
 ```
 
 ## Common Mistakes to Avoid
@@ -137,12 +140,15 @@ Step 4: If no data found, inform user:
 
 When data is not available, be specific:
 - ❌ "No data found" (too vague)
-- ✅ "Somalia has population and food security data available, but refugee data is not available in HDX for this country"
+- ✅ "Somalia has population and food security data available, but refugee data is not
+  available in HDX for this country"
 
 When data is available, explain the coverage:
-- ✅ "Afghanistan has refugee data available at country level (admin 0) and province level (admin 1) from 2020-2024"
+- ✅ "Afghanistan has refugee data available at country level (admin 0) and province level
+  (admin 1) from 2020-2024"
 
 ## Remember: Verification First, Query Second
 
-**The metadata_data_availability_get tool is your data compass - use it before every data expedition.**
+**The metadata_data_availability_get tool is your data compass - use it before every
+data expedition.**
 """

@@ -2,7 +2,8 @@
 HDX MCP Server - A Model Context Protocol server for the Humanitarian Data Exchange API.
 
 This package provides a comprehensive MCP server that automatically generates tools
-from the HDX HAPI OpenAPI specification and includes custom tools for enhanced functionality.
+from the HDX HAPI OpenAPI specification and includes custom tools for enhanced
+functionality.
 
 The server is organized into the following modules:
 - server: Core server implementation and OpenAPI integration

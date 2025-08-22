@@ -23,7 +23,7 @@ Thank you for your interest in contributing to the HDX MCP Server! This document
    ```bash
    # macOS and Linux
    curl -LsSf https://astral.sh/uv/install.sh | sh
-   
+
    # Windows
    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
    ```
@@ -32,7 +32,7 @@ Thank you for your interest in contributing to the HDX MCP Server! This document
    ```bash
    # Install all dependencies including dev dependencies
    uv sync --all-extras --dev
-   
+
    # Set up environment configuration
    cp env.example .env
    # Edit .env with your HDX API key and settings
@@ -153,33 +153,33 @@ logger = logging.getLogger(__name__)
 
 class ExampleClass:
     """Class docstring describing the class purpose."""
-    
+
     def __init__(self, api_key: str, timeout: float = 30.0) -> None:
         """Initialize the class with required parameters.
-        
+
         Args:
             api_key: The API key for authentication
             timeout: Request timeout in seconds
         """
         self.api_key = api_key
         self.timeout = timeout
-    
+
     async def fetch_data(self, endpoint: str) -> Dict[str, Any]:
         """Fetch data from the specified endpoint.
-        
+
         Args:
             endpoint: The API endpoint to fetch from
-            
+
         Returns:
             Dictionary containing the API response
-            
+
         Raises:
             ValueError: If endpoint is invalid
             httpx.RequestError: If the request fails
         """
         if not endpoint:
             raise ValueError("Endpoint cannot be empty")
-        
+
         # Implementation here
         return {"data": "example"}
 ```
@@ -212,7 +212,7 @@ from src.hdx_mcp_server import HDXMCPServer
 
 class TestServerInitialization:
     """Test server initialization and configuration."""
-    
+
     def test_server_initialization_with_valid_environment(self, mock_env_vars, sample_openapi_spec):
         """Test that server initializes correctly with valid environment variables."""
         # Arrange
@@ -220,13 +220,13 @@ class TestServerInitialization:
             mock_response = MagicMock()
             mock_response.json.return_value = sample_openapi_spec
             mock_get.return_value = mock_response
-            
+
             with patch('fastmcp.FastMCP.from_openapi') as mock_fastmcp:
                 mock_fastmcp.return_value = MagicMock()
-                
+
                 # Act
                 server = HDXMCPServer()
-                
+
                 # Assert
                 assert server.api_key == "test_api_key_12345"
                 assert server.base_url == "https://test.hapi.humdata.org/api/v2"
@@ -280,7 +280,7 @@ GitHub Actions automatically run on pull requests and pushes:
    ```bash
    # Run all quality checks
    uv run pre-commit run --all-files
-   
+
    # Run full test suite
    uv run pytest --cov=src
    ```

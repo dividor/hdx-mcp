@@ -32,8 +32,6 @@ class TestAPIIntegration:
             if response.status_code != 200:
                 pytest.skip("HDX OpenAPI spec not accessible")
 
-            spec = response.json()
-
             # Mock FastMCP to avoid actual server creation
             with patch("fastmcp.FastMCP.from_openapi") as mock_fastmcp:
                 mock_fastmcp.return_value = MagicMock()
@@ -72,7 +70,8 @@ class TestAPIIntegration:
             app_info = "hdx-mcp-server-test:test@example.com"
             app_identifier = base64.b64encode(app_info.encode()).decode()
 
-            # Make a test request to the version endpoint (should not require complex auth)
+            # Make a test request to the version endpoint (should not require complex
+            # auth)
             async with httpx.AsyncClient() as client:
                 response = await client.get(
                     f"{base_url}/util/version",

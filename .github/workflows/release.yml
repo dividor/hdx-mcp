@@ -8,7 +8,7 @@ on:
 jobs:
   create-release:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
 
@@ -41,21 +41,21 @@ jobs:
         release_name: Release ${{ github.ref }}
         body: |
           ## What's Changed
-          
+
           * See [CHANGELOG.md](CHANGELOG.md) for details
-          
+
           ## Installation
-          
+
           ```bash
           # With UV (recommended)
           uv add hdx-mcp-server
-          
+
           # With pip
           pip install hdx-mcp-server
           ```
-          
+
           ## Quick Start
-          
+
           ```bash
           # Setup
           git clone https://github.com/your-org/hdx-mcp-server
@@ -63,7 +63,7 @@ jobs:
           uv sync
           cp env.example .env
           # Edit .env with your HDX API key
-          
+
           # Run
           uv run python -m hdx_mcp_server
           ```

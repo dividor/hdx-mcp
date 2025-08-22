@@ -7,7 +7,6 @@ testing the actual production code without external dependencies.
 
 import base64
 import os
-from typing import Any, Dict
 from unittest.mock import patch
 
 import pytest
@@ -207,12 +206,14 @@ class TestOpenAPIProcessing:
                         "parameters": [
                             {
                                 "name": "limit",
-                                "description": "See https://hdx-hapi.readthedocs.io/en/latest/ for details",
+                                "description": "See https://hdx-hapi.readthedocs.io/en/latest/ "
+                                "for details",
                                 "schema": {"type": "integer", "default": 10000},
                             },
                             {
                                 "name": "admin_level",
-                                "description": "Administrative level (0=country, 1=admin1, 2=admin2)",
+                                "description": "Administrative level (0=country, "
+                                "1=admin1, 2=admin2)",
                                 "schema": {"type": "integer"},
                             },
                         ]

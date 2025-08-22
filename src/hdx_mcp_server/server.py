@@ -11,7 +11,6 @@ License: MIT
 """
 
 import argparse
-import asyncio
 import logging
 import os
 import sys
@@ -239,7 +238,8 @@ class HDXMCPServer:
             return {}
 
         def resolve_refs_recursively(obj: Any, depth: int = 0) -> Any:
-            """Recursively resolve all $ref references in any object while preserving enum values."""
+            """Recursively resolve all $ref references in any object while preserving
+            enum values."""
             if depth > 10:  # Prevent infinite recursion
                 logger.warning("⚠️ Max recursion depth reached in schema resolution")
                 return obj
@@ -252,7 +252,8 @@ class HDXMCPServer:
                         # Create inline schema that preserves all important information
                         inline_schema = copy.deepcopy(resolved_schema)
 
-                        # If the original object has additional properties (like description), merge them
+                        # If the original object has additional properties (like
+                        # description), merge them
                         for key, value in obj.items():
                             if key != "$ref":
                                 inline_schema[key] = value
@@ -263,7 +264,8 @@ class HDXMCPServer:
                                 ref_path.split("/")[-1] if "/" in ref_path else ref_path
                             )
                             logger.debug(
-                                f"📋 Preserved enum schema {schema_name} with {len(resolved_schema['enum'])} values: {resolved_schema['enum']}"
+                                f"📋 Preserved enum schema {schema_name} with "
+                                f"{len(resolved_schema['enum'])} values: {resolved_schema['enum']}"
                             )
 
                         # Recursively resolve any nested refs in the resolved schema
@@ -287,7 +289,8 @@ class HDXMCPServer:
                         if isinstance(item, dict) and "enum" in item:
                             enum_name = item.get("title", "unknown enum")
                             logger.debug(
-                                f"📋 Found enum in anyOf: {enum_name} with {len(item['enum'])} values: {item['enum']}"
+                                f"📋 Found enum in anyOf: {enum_name} with "
+                                f"{len(item['enum'])} values: {item['enum']}"
                             )
 
                     return resolved_obj
@@ -307,7 +310,8 @@ class HDXMCPServer:
                         if isinstance(item, dict) and "enum" in item:
                             enum_name = item.get("title", "unknown enum")
                             logger.debug(
-                                f"📋 Found enum in oneOf: {enum_name} with {len(item['enum'])} values: {item['enum']}"
+                                f"📋 Found enum in oneOf: {enum_name} with "
+                                f"{len(item['enum'])} values: {item['enum']}"
                             )
 
                     return resolved_obj
@@ -384,7 +388,8 @@ class HDXMCPServer:
                                 if "enum" in resolved_schema:
                                     param_name = param.get("name", "unknown")
                                     logger.debug(
-                                        f"📋 Resolved enum in parameter '{param_name}': {resolved_schema['enum']}"
+                                        f"📋 Resolved enum in parameter '{param_name}': "
+                                        f"{resolved_schema['enum']}"
                                     )
                                 elif "anyOf" in resolved_schema:
                                     for any_of_item in resolved_schema.get("anyOf", []):
@@ -397,7 +402,9 @@ class HDXMCPServer:
                                                 "title", "unknown enum"
                                             )
                                             logger.debug(
-                                                f"📋 Resolved enum in parameter '{param_name}' anyOf: {enum_title} = {any_of_item['enum']}"
+                                                f"📋 Resolved enum in parameter "
+                                                f"'{param_name}' anyOf: {enum_title} = "
+                                                f"{any_of_item['enum']}"
                                             )
 
                 # Process response schemas
@@ -414,7 +421,8 @@ class HDXMCPServer:
                             media_type_data["schema"] = resolved_schema
                             schemas_processed += 1
                             logger.debug(
-                                f"📋 Resolved refs in response: {method.upper()} {path} - {response_code}"
+                                f"📋 Resolved refs in response: {method.upper()} {path} - "
+                                f"{response_code}"
                             )
 
                 # Process request body schemas
@@ -432,7 +440,8 @@ class HDXMCPServer:
                             )
 
         logger.info(
-            f"✅ Resolved all schema references inline and set default limits to 10 - processed {schemas_processed} schemas"
+            f"✅ Resolved all schema references inline and set default limits to 10 - "
+            f"processed {schemas_processed} schemas"
         )
         return fixed_spec
 
@@ -451,7 +460,9 @@ class HDXMCPServer:
             "/api/v2/affected-people/idps": "affected_people_idps_get",
             "/api/v2/affected-people/returnees": "affected_people_returnees_get",
             # Coordination Context endpoints
-            "/api/v2/coordination-context/operational-presence": "coordination_operational_presence_get",
+            "/api/v2/coordination-context/operational-presence": (
+                "coordination_operational_presence_get"
+            ),
             "/api/v2/coordination-context/funding": "coordination_funding_get",
             "/api/v2/coordination-context/conflict-events": "coordination_conflict_events_get",
             "/api/v2/coordination-context/national-risk": "coordination_national_risk_get",
@@ -494,7 +505,8 @@ class HDXMCPServer:
                         method_data["operationId"] = new_operation_id
                         operations_updated += 1
                         logger.debug(
-                            f"Updated operationId: {path} {method.upper()} - {old_operation_id} -> {new_operation_id}"
+                            f"Updated operationId: {path} {method.upper()} - "
+                            f"{old_operation_id} -> {new_operation_id}"
                         )
 
         logger.info(
@@ -514,57 +526,72 @@ class HDXMCPServer:
         description_patterns = [
             # Location references
             (
-                r'See the <a href="/docs#/Metadata/get_locations?_api_v[12]_metadata_location_get" target="_blank">location endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_locations?_api_v'
+                r'[12]_metadata_location_get" target="_blank">location endpoint</a> for details\.?',
                 "Use the metadata_location_get tool to get available location codes and names.",
             ),
             # Admin1 references
             (
-                r'See the <a href="/docs#/Metadata/get_admin1_api_v[12]_metadata_admin1_get" target="_blank">admin1 endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_admin1_api_v'
+                r'[12]_metadata_admin1_get" target="_blank">admin1 endpoint</a> for details\.?',
                 "Use the metadata_admin1_get tool to get available admin1 codes and names.",
             ),
             # Admin2 references
             (
-                r'See the <a href="/docs#/Metadata/get_admin2_api_v[12]_metadata_admin2_get" target="_blank">admin2 endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_admin2_api_v'
+                r'[12]_metadata_admin2_get" target="_blank">admin2 endpoint</a> for details\.?',
                 "Use the metadata_admin2_get tool to get available admin2 codes and names.",
             ),
             # Organization type references
             (
-                r'See the <a href="/docs#/Metadata/get_org_type_api_v[12]_metadata_org_type_get" target="_blank">org type endpoint</a> for details\.?',
-                "Use the metadata_org_type_get tool to get available organization type codes and descriptions.",
+                r'See the <a href="/docs#/Metadata/get_org_type_api_v'
+                r'[12]_metadata_org_type_get" target="_blank">org type endpoint</a> for details\.?',
+                "Use the metadata_org_type_get tool to get available "
+                "organization type codes and descriptions.",
             ),
             # Organization references
             (
-                r'See the <a href="/docs#/Metadata/get_orgs?_api_v[12]_metadata_org_get" target="_blank">org endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_orgs?_api_v'
+                r'[12]_metadata_org_get" target="_blank">org endpoint</a> for details\.?',
                 "Use the metadata_org_get tool to get available organization codes and names.",
             ),
             # Sector references
             (
-                r'See the <a href="/docs#/Metadata/get_sectors?_api_v[12]_metadata_sector_get" target="_blank">sector endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_sectors?_api_v'
+                r'[12]_metadata_sector_get" target="_blank">sector endpoint</a> for details\.?',
                 "Use the metadata_sector_get tool to get available sector codes and names.",
             ),
             # Currency references
             (
-                r'See the <a href="/docs#/Metadata/get_currencies?_api_v[12]_metadata_currency_get" target="_blank">currency endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_currencies?_api_v'
+                r'[12]_metadata_currency_get" target="_blank">currency endpoint</a> for details\.?',
                 "Use the metadata_currency_get tool to get available currency codes.",
             ),
             # WFP Commodity references
             (
-                r'See the <a href="/docs#/Metadata/get_wfp_commodities?_api_v[12]_metadata_wfp_commodity_get" target="_blank">wfp commodity endpoint</a> for details\.?',
-                "Use the metadata_wfp_commodity_get tool to get available WFP commodity codes and names.",
+                r'See the <a href="/docs#/Metadata/get_wfp_commodities?_api_v[12]_'
+                r'metadata_wfp_commodity_get" target="_blank">wfp commodity endpoint</a> '
+                r"for details\.?",
+                "Use the metadata_wfp_commodity_get tool to get available "
+                "WFP commodity codes and names.",
             ),
             # WFP Market references
             (
-                r'See the <a href="/docs#/Metadata/get_wfp_markets?_api_v[12]_metadata_wfp_market_get" target="_blank">wfp market endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_wfp_markets?_api_v[12]_'
+                r'metadata_wfp_market_get" target="_blank">wfp market endpoint</a> '
+                r"for details\.?",
                 "Use the metadata_wfp_market_get tool to get available WFP market codes and names.",
             ),
             # Dataset references
             (
-                r'See the <a href="/docs#/Metadata/get_datasets?_api_v[12]_metadata_dataset_get" target="_blank">dataset endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_datasets?_api_v'
+                r'[12]_metadata_dataset_get" target="_blank">dataset endpoint</a> for details\.?',
                 "Use the metadata_dataset_get tool to get available dataset information.",
             ),
             # Resource references
             (
-                r'See the <a href="/docs#/Metadata/get_resources?_api_v[12]_metadata_resource_get" target="_blank">resource endpoint</a> for details\.?',
+                r'See the <a href="/docs#/Metadata/get_resources?_api_v'
+                r'[12]_metadata_resource_get" target="_blank">resource endpoint</a> for details\.?',
                 "Use the metadata_resource_get tool to get available resource information.",
             ),
             # Generic endpoint references (catch remaining cases)
@@ -600,11 +627,13 @@ class HDXMCPServer:
                                     nonlocal descriptions_updated
                                     descriptions_updated += 1
                                     logger.info(
-                                        f"✅ Updated description in {path_info}: '{pattern[:50]}...' -> MCP tool reference"
+                                        f"✅ Updated description in {path_info}: "
+                                        f"'{pattern[:50]}...' -> MCP tool reference"
                                     )
                         except (TypeError, AttributeError):
                             logger.debug(
-                                f"Skipping regex update for non-string description at {path_info}: {type(updated_desc)}"
+                                f"Skipping regex update for non-string description at "
+                                f"{path_info}: {type(updated_desc)}"
                             )
                             continue
 
@@ -687,8 +716,10 @@ class HDXMCPServer:
             "\n\n🎯 **CRITICAL - Administrative Level Efficiency**: "
             "Before making aggregate queries (totals, country-wide statistics), "
             "ALWAYS check data availability using metadata_data_availability_get for the target country. "
-            "Use the LOWEST available admin level (0=country, 1=state, 2=district) to avoid downloading "
-            "excessive granular data. For country totals, use admin level 0 if available, otherwise level 1. "
+            "Use the LOWEST available admin level (0=country, 1=state, "
+            "2=district) to avoid downloading excessive granular data. "
+            "For country totals, use admin level 0 if available, "
+            "otherwise level 1. "
             "Never query admin level 2 for simple aggregations when level 0/1 is sufficient."
         )
 
@@ -751,7 +782,8 @@ class HDXMCPServer:
                         )
 
                 elif isinstance(operation, dict) and "description" in operation:
-                    # Add location guidance to the description if no summary (for location endpoints)
+                    # Add location guidance to the description if no summary (for
+                    # location endpoints)
                     if any(endpoint in path for endpoint in location_endpoints):
                         if location_guidance not in operation["description"]:
                             operation["description"] = (
@@ -772,7 +804,8 @@ class HDXMCPServer:
                         )
 
         logger.info(
-            f"Added administrative level, data coverage, and pagination guidance to {guidance_added} operations"
+            f"Added administrative level, data coverage, "
+            f"and pagination guidance to {guidance_added} operations"
         )
         return enhanced_spec
 
@@ -832,13 +865,12 @@ class HDXMCPServer:
         since it's automatically provided by the HTTP client.
         """
         try:
-            from fastmcp.server.openapi import OpenAPITool
-
             if (
                 hasattr(component, "__class__")
                 and "Tool" in component.__class__.__name__
             ):
-                # The tool parameters are in the 'parameters' attribute for OpenAPI tools
+                # The tool parameters are in the 'parameters' attribute for OpenAPI
+                # tools
                 if hasattr(component, "parameters") and component.parameters:
                     properties = component.parameters.get("properties", {})
                     if "app_identifier" in properties:
@@ -955,7 +987,8 @@ class HDXMCPServer:
             """
             Instructions for using HDX tools effectively.
 
-            Provides guidance on handling disaggregated data, pagination, and parameter optimization.
+            Provides guidance on handling disaggregated data, pagination,
+                and parameter optimization.
             """
             return await hdx_usage_instructions.hdx_usage_instructions()
 

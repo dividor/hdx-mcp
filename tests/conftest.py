@@ -4,9 +4,8 @@ Shared test fixtures and configuration for HDX MCP Server tests.
 This module contains pytest fixtures that are shared across all test modules.
 """
 
-import base64
 import os
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
