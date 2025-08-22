@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HDX MCP Server - An MCP server for the Humanitarian Data Exchange API
+HDX MCP Server - An MCP server for the Humanitarian Data Exchange API.
 
 This server provides MCP tools for interacting with the HDX HAPI (Humanitarian API).
 It automatically generates tools from the OpenAPI specification and allows for
@@ -238,8 +238,10 @@ class HDXMCPServer:
             return {}
 
         def resolve_refs_recursively(obj: Any, depth: int = 0) -> Any:
-            """Recursively resolve all $ref references in any object while preserving
-            enum values."""
+            """Recursively resolve all $ref references in any object while preserving enum values.
+
+            This function prevents infinite recursion and preserves enum information.
+            """
             if depth > 10:  # Prevent infinite recursion
                 logger.warning("⚠️ Max recursion depth reached in schema resolution")
                 return obj
@@ -1024,7 +1026,7 @@ class HDXMCPServer:
 
 
 def main():
-    """Main entry point for the HDX MCP Server."""
+    """Run the HDX MCP Server."""
     parser = argparse.ArgumentParser(
         description="HDX MCP Server - Humanitarian Data Exchange API Server",
         formatter_class=argparse.RawDescriptionHelpFormatter,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Integration tests for HTTP transport functionality"""
+"""Integration tests for HTTP transport functionality."""
 
 import json
 import subprocess
@@ -12,7 +12,7 @@ import requests
 
 @pytest.fixture(scope="module")
 def http_server():
-    """Start HTTP server for testing"""
+    """Start HTTP server for testing."""
     import os
 
     # Start the server in a subprocess
@@ -59,7 +59,7 @@ def http_server():
 
 @contextmanager
 def mcp_session(base_url: str):
-    """Context manager for MCP HTTP session with proper initialization"""
+    """Context manager for MCP HTTP session with proper initialization."""
     # Initialize session
     init_response = requests.post(
         base_url,
@@ -110,10 +110,10 @@ def mcp_session(base_url: str):
 
 @pytest.mark.integration
 class TestHTTPTransport:
-    """Integration tests for HTTP transport"""
+    """Integration tests for HTTP transport."""
 
     def test_tools_list(self, http_server):
-        """Test that tools list works via HTTP"""
+        """Test that tools list works via HTTP."""
         with mcp_session(http_server) as headers:
             response = requests.post(
                 http_server,
@@ -133,7 +133,7 @@ class TestHTTPTransport:
             assert "hdx_get_dataset_info" in response_text
 
     def test_simple_tool_call(self, http_server):
-        """Test simple tool call works"""
+        """Test simple tool call works."""
         with mcp_session(http_server) as headers:
             response = requests.post(
                 http_server,
@@ -173,7 +173,7 @@ class TestHTTPTransport:
             pytest.fail("Tool call did not return expected result")
 
     def test_hdx_server_info_call(self, http_server):
-        """Test hdx_server_info tool call works"""
+        """Test hdx_server_info tool call works."""
         with mcp_session(http_server) as headers:
             response = requests.post(
                 http_server,
@@ -214,7 +214,7 @@ class TestHTTPTransport:
             pytest.fail("hdx_server_info tool did not return expected result")
 
     def test_hdx_search_locations_call(self, http_server):
-        """Test hdx_search_locations tool call works"""
+        """Test hdx_search_locations tool call works."""
         with mcp_session(http_server) as headers:
             response = requests.post(
                 http_server,

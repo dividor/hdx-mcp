@@ -1,5 +1,5 @@
 """
-HDX MCP Server - Tools Module
+HDX MCP Server - Tools Module.
 
 This module contains custom tool implementations for the HDX MCP server.
 Tools are organized by functionality and can be easily extended.

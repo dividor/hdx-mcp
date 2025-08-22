@@ -1,5 +1,5 @@
 """
-HDX MCP Server - Data Coverage Guidance Prompt
+HDX MCP Server - Data Coverage Guidance Prompt.
 
 This module contains specific guidance for understanding and checking data coverage
 across different countries, administrative levels, and data types in HDX.

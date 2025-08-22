@@ -1,5 +1,5 @@
 """
-HDX MCP Server - Population Data Guidance Prompt
+HDX MCP Server - Population Data Guidance Prompt.
 
 This module contains the population data guidance prompt that helps users
 understand how to effectively query population data from HDX.

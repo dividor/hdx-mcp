@@ -1,5 +1,5 @@
 """
-HDX MCP Server - HDX Tools Usage Instructions Prompt
+HDX MCP Server - HDX Tools Usage Instructions Prompt.
 
 This module contains the HDX tools usage instructions prompt that helps users
 understand how to effectively use HDX tools and handle large datasets.

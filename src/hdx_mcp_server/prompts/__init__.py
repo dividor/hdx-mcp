@@ -1,5 +1,5 @@
 """
-HDX MCP Server - Prompts Module
+HDX MCP Server - Prompts Module.
 
 This module contains prompt implementations for the HDX MCP server.
 Prompts provide guidance and context for AI assistants using the server.
