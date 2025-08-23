@@ -174,7 +174,7 @@ don't guarantee we'll act on it.
 ## Appealing
 
 Only permanent resolutions (such as bans) may be appealed. To appeal a decision
-of the committee, contact the committee at [INSERT EMAIL ADDRESS] with your
+of the committee, contact the repository owner with your
 appeal and the committee will review the case.
 
 ## Attribution
