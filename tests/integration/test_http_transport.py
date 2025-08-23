@@ -19,7 +19,7 @@ def http_server():
     env = os.environ.copy()
     env.update(
         {
-            "HDX_API_KEY": "test-key",
+            "HDX_APP_IDENTIFIER": "test-key",
             "HDX_BASE_URL": "https://hapi.humdata.org",
             "HDX_OPENAPI_URL": "https://hapi.humdata.org/openapi.json",
             "HDX_HOST": "127.0.0.1",

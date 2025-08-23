@@ -46,7 +46,7 @@ class HDXMCPServer:
 
     def __init__(self):
         """Initialize the HDX MCP Server."""
-        self.api_key = self._get_required_env("HDX_API_KEY")
+        self.api_key = self._get_required_env("HDX_APP_IDENTIFIER")
         self.base_url = os.getenv("HDX_BASE_URL", DEFAULT_BASE_URL)
         self.openapi_url = os.getenv("HDX_OPENAPI_URL", DEFAULT_HDX_OPENAPI_URL)
         self.host = os.getenv("MCP_HOST", DEFAULT_HOST)

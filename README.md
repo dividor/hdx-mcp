@@ -83,7 +83,7 @@ Then set up the MCP server ...
 3. `cd hdx-mcp`
 4. `uv sync --all-extras --dev`
 5. `cp env.example .env`
-6. Then Edit your `.env` and set `HDX_API_KEY` to the application identify you created above
+6. Then Edit your `.env` and set `HDX_APP_IDENTIFIER` to the application identifier you created above
 7. Run the server: `uv run hdx-mcp-server --transport http --host 0.0.0.0 --port 9000 --verbose`
 
 You can use MCP Inspector to test the server ...
@@ -147,7 +147,7 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
 4. **Ensure your `.env` file is configured** with your HDX API key:
    ```bash
-   HDX_API_KEY=your_hdx_api_key_here
+   HDX_APP_IDENTIFIER=your_hdx_app_identifier_here
    HDX_BASE_URL=https://hapi.humdata.org
    ```
 
@@ -169,7 +169,7 @@ The server is configured via environment variables. Copy `env.example` to `.env`
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `HDX_API_KEY` | **Yes** | - | Your HDX API key |
+| `HDX_APP_IDENTIFIER` | **Yes** | - | Your HDX application identifier |
 | `HDX_BASE_URL` | No | `https://hapi.humdata.org/api/v2` | HDX API base URL |
 | `HDX_OPENAPI_URL` | No | `https://hapi.humdata.org/openapi.json` | OpenAPI spec URL |
 | `HDX_TIMEOUT` | No | `30.0` | HTTP request timeout (seconds) |
@@ -225,9 +225,9 @@ This server follows MCP security best practices:
 
 ### Common Issues
 
-1. **"Required environment variable HDX_API_KEY is not set"**
+1. **"Required environment variable HDX_APP_IDENTIFIER is not set"**
    - Ensure you have copied `.env.example` to `.env`
-   - Verify your HDX API key is correctly set in `.env`
+   - Verify your HDX application identifier is correctly set in `.env`
 
 2. **"Failed to load OpenAPI specification"**
    - Check your internet connection

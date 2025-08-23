@@ -16,7 +16,7 @@ def mock_env_vars():
     with patch.dict(
         os.environ,
         {
-            "HDX_API_KEY": "test_api_key_12345",
+            "HDX_APP_IDENTIFIER": "test_api_key_12345",
             "HDX_BASE_URL": "https://test.hapi.humdata.org/api/v2",
             "HDX_OPENAPI_URL": "https://test.hapi.humdata.org/openapi.json",
             "HDX_TIMEOUT": "15.0",

@@ -111,8 +111,8 @@ except Exception as e:
 
 #### Secure Environment Setup
 ```bash
-# Use strong API keys
-HDX_API_KEY=your_long_secure_api_key_here
+# Use strong application identifiers
+HDX_APP_IDENTIFIER=your_hdx_app_identifier_here
 
 # Never commit secrets to version control
 # Use secure environment variable management in production

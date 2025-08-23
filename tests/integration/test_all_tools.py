@@ -22,10 +22,10 @@ class TestHDXToolsIntegration:
     async def setup_server(self):
         """Set up minimal server instance for testing."""
         # Ensure we have required environment variables
-        api_key = os.getenv("HDX_API_KEY")
+        api_key = os.getenv("HDX_APP_IDENTIFIER")
         assert (
             api_key
-        ), "HDX_API_KEY environment variable is required for integration tests"
+        ), "HDX_APP_IDENTIFIER environment variable is required for integration tests"
 
         # Create minimal server instance
         self.server = object.__new__(HDXMCPServer)

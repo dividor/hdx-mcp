@@ -21,10 +21,10 @@ class TestAPIIntegration:
         """Test server creation with actual HDX OpenAPI specification (if available)."""
         # This test requires network access and a valid API key
         # Fail if no API key is available - integration tests should not skip
-        api_key = os.getenv("HDX_API_KEY")
+        api_key = os.getenv("HDX_APP_IDENTIFIER")
         assert (
             api_key
-        ), "HDX_API_KEY environment variable is required for integration tests"
+        ), "HDX_APP_IDENTIFIER environment variable is required for integration tests"
 
         try:
             # Try to fetch the real OpenAPI spec
@@ -54,14 +54,14 @@ class TestAPIIntegration:
     async def test_real_api_authentication(self):
         """Test authentication with real HDX API (if credentials available)."""
         # Fail if no API key is available - integration tests should not skip
-        api_key = os.getenv("HDX_API_KEY")
+        api_key = os.getenv("HDX_APP_IDENTIFIER")
         assert (
             api_key
-        ), "HDX_API_KEY environment variable is required for integration tests"
+        ), "HDX_APP_IDENTIFIER environment variable is required for integration tests"
 
         try:
             # Test a simple API call to verify authentication
-            api_key = os.getenv("HDX_API_KEY")
+            api_key = os.getenv("HDX_APP_IDENTIFIER")
             base_url = "https://hapi.humdata.org/api/v2"
 
             # Create app identifier
