@@ -51,6 +51,17 @@ When working with population data in HDX, these tools are most useful:
 3. **Use 'all' defaults**: The system defaults age_range and gender to 'all' for comprehensive data
 4. **Combine tools**: Use metadata tools to understand data sources and coverage
 
+## ⚠️ CRITICAL: Never Manually Aggregate Population Data
+
+**NEVER aggregate totals yourself to answer a question if you do not have the values "
+"already aggregated from the tool.**
+
+- **Do NOT** sum population figures from subnational areas to get country totals
+- **Do NOT** manually add up age groups or demographic segments
+- **Do NOT** combine data from different time periods yourself
+- **If pre-aggregated data is not available**, inform the user rather than calculating manually
+- **Use the highest admin level** that has the aggregated data you need
+
 ## Example Workflow
 1. Use `metadata_location_get` to find the correct country code
 2. Query `baseline_population_get` for general population statistics

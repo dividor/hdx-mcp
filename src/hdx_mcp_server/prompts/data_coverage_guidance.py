@@ -151,4 +151,15 @@ When data is available, explain the coverage:
 
 **The metadata_data_availability_get tool is your data compass - use it before every
 data expedition.**
+
+## ⚠️ CRITICAL: Never Manually Aggregate Data
+
+**NEVER aggregate totals yourself to answer a question if you do not have the values "
+"already aggregated from the tool.**
+
+- **Do NOT** sum individual records to create country totals
+- **Do NOT** manually calculate statistics across administrative levels
+- **Do NOT** aggregate data across time periods or demographics yourself
+- **If aggregate data is not available**, clearly inform the user instead of calculating it manually
+- **Use the highest appropriate admin level** that has pre-aggregated data available
 """

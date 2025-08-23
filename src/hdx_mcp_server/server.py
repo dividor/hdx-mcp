@@ -198,6 +198,9 @@ class HDXMCPServer:
             # Add administrative level guidance to relevant operations
             spec = self._add_admin_level_guidance(spec)
 
+            # Add aggregation warnings to data operations
+            spec = self._add_aggregation_warnings(spec)
+
             logger.info(
                 f"Loaded OpenAPI spec with {len(spec.get('paths', {}))} endpoints"
             )
@@ -809,6 +812,74 @@ class HDXMCPServer:
             f"Added administrative level, data coverage, "
             f"and pagination guidance to {guidance_added} operations"
         )
+        return enhanced_spec
+
+    def _add_aggregation_warnings(self, spec: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Add critical warnings about never manually aggregating data.
+
+        This adds warnings to tools that return data that might be manually aggregated.
+        """
+        import copy
+
+        enhanced_spec = copy.deepcopy(spec)
+        warnings_added = 0
+
+        # Define operations that need aggregation warnings
+        data_endpoints = [
+            "affected-people",
+            "baseline-population",
+            "humanitarian-needs",
+            "refugees",
+            "idps",
+            "returnees",
+            "population",
+            "food-security",
+            "nutrition",
+            "poverty",
+            "conflict",
+            "funding",
+            "rainfall",
+            "operational-presence",
+            "national-risk",
+        ]
+
+        aggregation_warning = (
+            "\n\n⚠️ **CRITICAL - Never Manually Aggregate Data**: "
+            "NEVER aggregate totals yourself to answer a question if you do not have the values "
+            "already aggregated from the tool. "
+            "Do NOT sum up individual records, calculate country-wide statistics from subnational data, "
+            "or aggregate across time periods/demographics yourself. "
+            "If data is not pre-aggregated, inform the user that aggregate data is not available. "
+            "Always use the most appropriate administrative level that has pre-aggregated data."
+        )
+
+        for path, methods in enhanced_spec.get("paths", {}).items():
+            for method, operation in methods.items():
+                if method.lower() in ["get", "post"] and isinstance(operation, dict):
+                    # Check if this endpoint deals with data that might be aggregated
+                    if any(endpoint in path for endpoint in data_endpoints):
+                        if "summary" in operation:
+                            if aggregation_warning not in operation["summary"]:
+                                operation["summary"] = (
+                                    operation["summary"] + aggregation_warning
+                                )
+                                warnings_added += 1
+                                logger.debug(
+                                    f"Added aggregation warning to {method.upper()} {path}"
+                                )
+
+                        elif "description" in operation:
+                            if aggregation_warning not in operation["description"]:
+                                operation["description"] = (
+                                    operation["description"] + aggregation_warning
+                                )
+                                warnings_added += 1
+                                logger.debug(
+                                    f"Added aggregation warning to {method.upper()} {path}"
+                                )
+
+        logger.info(f"Added aggregation warnings to {warnings_added} data operations")
         return enhanced_spec
 
     def _create_route_mappings(self) -> List[RouteMap]:

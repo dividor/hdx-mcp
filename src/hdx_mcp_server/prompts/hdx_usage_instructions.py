@@ -143,6 +143,18 @@ Instead of retrieving all data, consider asking users to be more specific:
 - **Use meaningful limits** - don't request more data than needed
 - **Consider data processing time** - larger datasets take longer to process
 
+### ⚠️ CRITICAL: Never Manually Aggregate Data
+**NEVER aggregate totals yourself to answer a question if you do not have the values "
+"already aggregated from the tool.**
+
+- **Do NOT** sum up individual records to create totals
+- **Do NOT** manually calculate country-wide statistics from subnational data
+- **Do NOT** aggregate across time periods, demographics, or geographic areas yourself
+- **If data is not pre-aggregated**, inform the user that aggregate data is not available
+- **Always use** the most appropriate administrative level that has pre-aggregated data
+- **Example**: If asking for total refugees in a country, use country-level data if "
+"available, don't sum state-level data
+
 ## Example Workflow
 
 ```
