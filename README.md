@@ -144,7 +144,7 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
    **Replace `/absolute/path/to/your/hdx-mcp` with the actual path from step 2.**
 
-4. **Ensure your `.env` file is configured** with your HDX API key:
+4. **Ensure your `.env` file is configured** with your HDX app identifier:
    ```bash
    HDX_APP_IDENTIFIER=your_hdx_app_identifier_here
    HDX_BASE_URL=https://hapi.humdata.org
@@ -238,7 +238,7 @@ This server follows MCP security best practices:
    - Use `--host 0.0.0.0` for external access
 
 4. **Authentication errors**
-   - Verify your HDX API key is valid
+   - Verify your HDX API app identifier is valid
    - Check if your account has necessary permissions
 
 ### Logging
@@ -285,4 +285,4 @@ For issues related to:
 
 ---
 
-**Note**: This server requires a valid HDX API key. Please ensure you comply with HDX's terms of service and rate limiting guidelines when using this server.
+**Note**: This server requires a valid HDX API app identifier. Please ensure you comply with HDX's terms of service and rate limiting guidelines when using this server.
