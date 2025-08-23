@@ -1,4 +1,4 @@
-# HDX MCP Server
+# 🌍 HDX MCP Server
 
 <div align="center">
   <img src="./assets/chad-people-in-need.png" alt="HDX MCP Server used in Claude Desktop" width="65%">
@@ -6,6 +6,7 @@
   <em>Example of using HDX MCP server used in Claude Desktop</em>
 </div>
 
+<br>
 
 A Model Context Protocol (MCP) server that provides AI assistants access to the [Humanitarian Data Exchange (HDX) API](https://data.humdata.org/hapi). This provides a wide array of humanitarian data hosted on the [Humanitarian Data Exchange](https://data.humdata.org/).
 
