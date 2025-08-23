@@ -278,6 +278,11 @@ For issues related to:
 - **MCP protocol**: See [MCP specification](https://modelcontextprotocol.io/)
 - **FastMCP library**: Check [FastMCP documentation](https://gofastmcp.com/)
 
+## Issues & Feedback
+
+- **Issues & Suggestions**: Please raise an [issue](https://github.com/dividor/hdx-mcp/issues) for any bugs, feature requests, or suggestions
+- **Security Issues**: For security-related concerns, please raise an issue to be contacted privately
+
 ---
 
 **Note**: This server requires a valid HDX API key. Please ensure you comply with HDX's terms of service and rate limiting guidelines when using this server.
