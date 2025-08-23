@@ -61,9 +61,9 @@ async def get_dataset_info(server_instance, dataset_hdx_id: str) -> Dict[str, An
             "dataset_hdx_id": dataset_hdx_id,
         }
     except Exception as e:
-        logger.error(f"Error fetching dataset info: {e}")
+        logger.error(f"Error fetching dataset info for {dataset_hdx_id}: {e}")
         return {
-            "error": f"Failed to fetch dataset information: {str(e)}",
+            "error": "Failed to fetch dataset information",
             "dataset_hdx_id": dataset_hdx_id,
         }
 
@@ -105,9 +105,11 @@ async def search_locations(
             },
         }
     except Exception as e:
-        logger.error(f"Error searching locations: {e}")
+        logger.error(
+            f"Error searching locations with filters {name_pattern}, {has_hrp}: {e}"
+        )
         return {
-            "error": f"Failed to search locations: {str(e)}",
+            "error": "Failed to search locations",
             "filters_applied": {
                 "name_pattern": name_pattern,
                 "has_hrp": has_hrp,

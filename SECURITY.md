@@ -1,5 +1,7 @@
 # Security Considerations for HDX MCP Server
 
+To report any security issues associated with this repo, please raise an [issue](https://github.com/dividor/hdx-mcp/issues).
+
 This document outlines the security practices implemented in the HDX MCP Server and provides guidance for secure deployment and usage.
 
 ## Security Best Practices Implemented
@@ -8,8 +10,8 @@ This document outlines the security practices implemented in the HDX MCP Server 
 
 #### ✅ Environment-Based Configuration
 - API keys are stored in environment variables, never hardcoded
-- `.env.example` provided for secure configuration setup
 - API keys are validated at startup but never logged
+- Configuration template provided for setup guidance
 
 #### ✅ Secure API Key Transmission
 - API keys transmitted via HTTP headers and query parameters as required by HDX
@@ -30,6 +32,16 @@ async def custom_tool(dataset_hdx_id: str) -> Dict[str, Any]:
     if not dataset_hdx_id.strip():
         return {"error": "dataset_hdx_id cannot be empty"}
 ```
+
+#### ✅ FastMCP Framework Security
+- **Automatic Schema Validation**: FastMCP validates all inputs against OpenAPI schemas before execution
+- **Type Safety**: Strong typing enforcement prevents type confusion attacks
+- **Request Sanitization**: Automatic sanitization of request parameters and headers
+- **Response Filtering**: Structured response handling prevents data leakage
+- **Error Boundary**: FastMCP provides controlled error handling that prevents stack trace exposure
+- **Transport Security**: Built-in support for secure stdio and HTTP transports
+- **Resource Management**: Automatic cleanup of resources and connections
+- **Protocol Compliance**: Full MCP (Model Context Protocol) specification compliance with security best practices
 
 ### 3. Network Security
 
@@ -99,14 +111,11 @@ except Exception as e:
 
 #### Secure Environment Setup
 ```bash
-# Use restrictive file permissions
-chmod 600 .env
-
-# Never commit .env to version control
-echo ".env" >> .gitignore
-
 # Use strong API keys
 HDX_API_KEY=your_long_secure_api_key_here
+
+# Never commit secrets to version control
+# Use secure environment variable management in production
 ```
 
 #### Production Considerations
@@ -245,7 +254,7 @@ If you suspect your HDX API key has been compromised:
    pkill -f hdx_mcp_server.py
 
    # Rotate your HDX API key
-   # Update .env with new key
+   # Update environment configuration with new key
    # Restart server with new key
    ```
 
