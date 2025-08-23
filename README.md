@@ -2,6 +2,9 @@
 
 A Model Context Protocol (MCP) server that provides AI assistants access to the [Humanitarian Data Exchange (HDX) API](https://data.humdata.org/hapi). This provides a wide array of humanitarian data hosted on the [Humanitarian Data Exchange](https://data.humdata.org/).
 
+![HDX MCP Server used in Claude Desktop](./assets/chad-people-in-need.png)
+*HDX MCP Server used in Claude Desktop*
+
 ## Available Tools (33 Total)
 
 ### 🔍 Metadata & Discovery (12 tools)
@@ -52,7 +55,9 @@ A Model Context Protocol (MCP) server that provides AI assistants access to the 
 
 ### Caveats
 
-The HDX API offers a very rich source of Humanitarian data, but it is complex. The coverage of data by regions differs per country, as showing in the table [here](https://data.humdata.org/hapi). This is not a technical limitation, but due to the challenging work of humanitarian organizations gathering data. This does however introduce some limitations, for example, conflict events in Afghanistan are only available at the province and district level, not national. Therefore questions about total count at the country level should not be supported as this would require gathering large volumes of disaggregated data and summation to the national level, both prohibitive and error-prone. The MCP server provided prompts for helping LLMs identify and inform the user, but as with any LLM application, evaluation testing should be carried out.
+The HDX API offers a very rich source of Humanitarian data, but it is complex. The coverage of data by regions differs per country, as showing in the table [here](https://data.humdata.org/hapi). This is not a technical limitation, but due to the challenging work of humanitarian organizations gathering data. This does however introduce some limitations, for example, conflict events in Afghanistan are only available at the province and district level, not national. Therefore questions about total count at the country level should not be supported as this would require gathering large volumes of disaggregated data and summation to the national level, both prohibitive and error-prone.
+
+The MCP server provided prompts for helping LLMs identify and inform the user, but as with any LLM application, evaluation testing and ongoing monitoring is required.
 
 ## Quick Start
 
@@ -96,11 +101,7 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
 ```
 
-## Using with Claude Desktop
-
-To use this HDX MCP server with Claude Desktop, you need to configure it in Claude's MCP settings.
-
-### Setup Steps
+## Using the HDX MCP Server in Claude Desktop
 
 1. **Complete the basic setup above** - ensure the server works with `uv run hdx-mcp-server`
 
