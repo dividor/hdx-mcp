@@ -4,16 +4,57 @@ A Model Context Protocol (MCP) server that provides AI assistants with seamless 
 
 This server automatically generates MCP tools from the HDX OpenAPI specification and includes custom tools for enhanced functionality.
 
-## Features
+## Available Tools (33 Total)
 
-- **🚀 Automatic OpenAPI Integration**: Automatically generates MCP tools from the HDX HAPI OpenAPI specification
-- **🔧 Custom Tools**: Additional hand-crafted tools for common HDX operations
-- **🔐 Secure Authentication**: Environment-based API key management with proper security practices
-- **📡 Dual Transport Support**: Both stdio and HTTP transports for local and remote usage
-- **🏷️ Smart Categorization**: Intelligent tagging and categorization of API endpoints
-- **🛡️ Security Best Practices**: Following MCP security guidelines with proper input validation
-- **✅ Comprehensive Testing**: Full test suite with unit and integration tests
-- **📋 Extensible Design**: Easy to add custom tools alongside auto-generated ones
+### 🔍 Metadata & Discovery (12 tools)
+- `metadata_location_get` - Get countries/locations in HDX
+- `metadata_admin1_get` - Get states/provinces
+- `metadata_admin2_get` - Get districts/counties
+- `metadata_data_availability_get` - **Check data coverage** (use first!)
+- `metadata_dataset_get` - Get dataset information
+- `metadata_resource_get` - Get resource details
+- `metadata_org_get` - Get organizations
+- `metadata_sector_get` - Get humanitarian sectors
+- `metadata_currency_get` - Get currency info
+- `metadata_org_type_get` - Get organization types
+- `metadata_wfp_commodity_get` - Get WFP commodities
+- `metadata_wfp_market_get` - Get WFP markets
+
+### 🚨 Affected People (4 tools)
+- `affected_people_refugees_get` - Get refugee/persons of concern data
+- `affected_people_humanitarian_needs_get` - Get humanitarian needs data
+- `affected_people_idps_get` - Get internally displaced persons data
+- `affected_people_returnees_get` - Get returnee data
+
+### 🌍 Demographics & Geography (1 tool)
+- `geography_infrastructure_baseline_population_get` - Get population data
+
+### 🌦️ Climate (1 tool)
+- `climate_rainfall_get` - Get rainfall data
+
+### 🤝 Coordination & Context (4 tools)
+- `coordination_context_operational_presence_get` - Get operational presence
+- `coordination_context_funding_get` - Get funding data
+- `coordination_context_conflict_events_get` - Get conflict events
+- `coordination_context_national_risk_get` - Get national risk data
+
+### 🍽️ Food Security & Poverty (3 tools)
+- `food_security_nutrition_poverty_food_security_get` - Get food security data
+- `food_security_nutrition_poverty_food_prices_get` - Get food prices
+- `food_security_nutrition_poverty_poverty_rate_get` - Get poverty rates
+
+### 🔧 Utilities (2 tools)
+- `encode_app_identifier_get` - Generate app identifier
+- `util_version_get` - Get API version
+
+### 🎯 Custom HDX Tools (3 tools)
+- `hdx_server_info` - Get server information
+- `hdx_get_dataset_info` - Get detailed dataset info
+- `hdx_search_locations` - Search for locations
+
+
+
+**⚠️ Critical**: Always use `metadata_data_availability_get` first to check data coverage - it varies significantly by country and administrative level.
 
 ### Caveats
 
@@ -237,20 +278,57 @@ If stdio transport doesn't work, you can also run the server in HTTP mode and co
 
 ## Available Tools
 
-The server provides tools automatically generated from the HDX HAPI OpenAPI specification, plus custom tools for enhanced functionality.
+The server provides **30 tools** automatically generated from the HDX HAPI OpenAPI specification, plus **3 custom tools** for enhanced functionality. All tools support pagination using `limit` and `offset` parameters.
 
-### Auto-Generated Tools (Examples)
+### 🔍 Metadata & Discovery Tools
 
-All HDX HAPI endpoints are automatically converted to MCP tools:
+- **`metadata_dataset_get`** - Get information about data sources and datasets in HDX HAPI
+- **`metadata_resource_get`** - Get information about data resource details and sources
+- **`metadata_location_get`** - Get the list of locations (countries) included in HDX HAPI
+- **`metadata_admin1_get`** - Get first-level subnational administrative divisions (states/provinces)
+- **`metadata_admin2_get`** - Get second-level subnational administrative divisions (districts/counties)
+- **`metadata_data_availability_get`** - **CRITICAL**: Get data availability for different geographic admin levels
+- **`metadata_currency_get`** - Get information about currency classifications used in data
+- **`metadata_org_get`** - Get the list of organizations represented in HDX HAPI data
+- **`metadata_org_type_get`** - Get information about organization type classifications
+- **`metadata_sector_get`** - Get humanitarian response sector classifications
+- **`metadata_wfp_commodity_get`** - Get the list of WFP (World Food Programme) commodities
+- **`metadata_wfp_market_get`** - Get the list of WFP market locations
 
-- **Metadata Tools**: `get_locations`, `get_admin1`, `get_admin2`, `get_organizations`, etc.
-- **Affected People Tools**: `get_humanitarian_needs`, `get_idps`, `get_refugees`, etc.
-- **Climate Tools**: `get_rainfall`
-- **Coordination Tools**: `get_conflict_events`, `get_funding`, `get_operational_presence`, etc.
-- **Food Security Tools**: `get_food_prices`, `get_food_security`, `get_poverty_rate`
-- **Geography Tools**: `get_baseline_population`
+### 🚨 Affected People & Humanitarian Needs
 
-### Custom Tools
+- **`affected_people_refugees_get`** - Get UNHCR refugee and persons of concern data
+- **`affected_people_humanitarian_needs_get`** - Get humanitarian needs assessments and people in need data
+- **`affected_people_idps_get`** - Get internally displaced persons (IDPs) data
+- **`affected_people_returnees_get`** - Get data about returned displaced persons
+
+### 🌍 Geography & Population
+
+- **`geography_infrastructure_baseline_population_get`** - Get baseline population data by geographic area
+
+### 🌦️ Climate & Environment
+
+- **`climate_rainfall_get`** - Get rainfall measurement data by location and time period
+
+### 🤝 Coordination & Context
+
+- **`coordination_context_operational_presence_get`** - Get organizations present and their humanitarian sectors
+- **`coordination_context_funding_get`** - Get humanitarian funding data and financial flows
+- **`coordination_context_conflict_events_get`** - Get conflict event data and security incidents
+- **`coordination_context_national_risk_get`** - Get national-level risk assessment data
+
+### 🍽️ Food Security, Nutrition & Poverty
+
+- **`food_security_nutrition_poverty_food_security_get`** - Get food security classification and analysis data
+- **`food_security_nutrition_poverty_food_prices_get`** - Get food commodity prices from market monitoring
+- **`food_security_nutrition_poverty_poverty_rate_get`** - Get poverty rate statistics and economic indicators
+
+### 🔧 Utility Tools
+
+- **`encode_app_identifier_get`** - Generate app identifier by encoding application name and email
+- **`util_version_get`** - Display the API and SQL Alchemy versions
+
+### 🎯 Custom HDX Tools
 
 #### `hdx_server_info`
 Get information about the HDX MCP server instance.
@@ -312,17 +390,26 @@ Search for locations (countries) in the HDX system.
 }
 ```
 
-## Tool Categories and Tags
+## Key Features & Data Coverage Notes
+
+### 🎯 Data Coverage Verification
+**CRITICAL**: Always use `metadata_data_availability_get` before querying specific data. Data coverage varies significantly by country and administrative level. Not all countries have data at all levels (country/state/district).
+
+### 🔄 Universal Pagination
+All tools support pagination with `limit` (default: 10, max: 100) and `offset` parameters for handling large datasets efficiently.
+
+### 🏷️ Tool Categories and Tags
 
 Tools are automatically categorized with relevant tags:
 
-- **Metadata Tools**: `metadata`, `reference`
-- **Affected People Tools**: `affected-people`, `humanitarian`
-- **Climate Tools**: `climate`, `environmental`
-- **Coordination Tools**: `coordination`, `humanitarian`
-- **Food Security Tools**: `food-security`, `nutrition`, `poverty`
-- **Geography Tools**: `geography`, `infrastructure`, `population`
-- **Utility Tools**: `utility`, `system`
+- **🔍 Metadata & Discovery**: `metadata`, `reference`, `discovery`
+- **🚨 Affected People & Humanitarian**: `affected-people`, `humanitarian`, `displacement`
+- **🌍 Geography & Population**: `geography`, `infrastructure`, `population`, `demographics`
+- **🌦️ Climate & Environment**: `climate`, `environmental`, `weather`
+- **🤝 Coordination & Context**: `coordination`, `humanitarian`, `context`, `security`
+- **🍽️ Food Security & Poverty**: `food-security`, `nutrition`, `poverty`, `economics`
+- **🔧 Utility & System**: `utility`, `system`, `admin`
+- **🎯 Custom HDX**: `hdx-custom`, `enhanced`
 
 All tools also include global tags: `hdx`, `humanitarian`, `data`
 
