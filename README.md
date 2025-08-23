@@ -2,8 +2,11 @@
 
 A Model Context Protocol (MCP) server that provides AI assistants access to the [Humanitarian Data Exchange (HDX) API](https://data.humdata.org/hapi). This provides a wide array of humanitarian data hosted on the [Humanitarian Data Exchange](https://data.humdata.org/).
 
-![HDX MCP Server used in Claude Desktop](./assets/chad-people-in-need.png)
-*HDX MCP Server used in Claude Desktop*
+<div align="center">
+  <img src="./assets/chad-people-in-need.png" alt="HDX MCP Server used in Claude Desktop" width="50%">
+  <br>
+  <em>HDX MCP Server used in Claude Desktop</em>
+</div>
 
 ## Available Tools (33 Total)
 
