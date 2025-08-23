@@ -379,6 +379,121 @@ This will:
 3. Create a GitHub release
 4. Upload release artifacts
 
+## Manual Testing
+
+Test the server manually with curl (HTTP transport):
+
+```bash
+# Start server
+uv run hdx-mcp-server --transport http
+
+# Test server info tool
+curl -X POST http://localhost:8000/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"method": "tools/call", "params": {"name": "hdx_server_info", "arguments": {}}}'
+```
+
+## Development Commands Reference
+
+### Complete Development Setup
+
+```bash
+# Install all dependencies including development tools
+uv sync --all-extras --dev
+
+# Install production dependencies only
+uv sync
+
+# Install pre-commit hooks (recommended)
+uv run pre-commit install
+```
+
+### Testing Commands
+
+```bash
+# Run tests
+uv run pytest
+
+# Run tests with coverage
+uv run pytest --cov=src --cov-report=html --cov-report=term-missing
+
+# Run specific test categories
+uv run pytest tests/unit/          # Unit tests
+uv run pytest tests/integration/   # Integration tests
+uv run pytest tests/security/      # Security tests
+
+# With coverage reporting
+uv run pytest --cov=src --cov-report=html
+```
+
+### Code Quality Commands
+
+```bash
+# Code quality checks
+uv run black src/ tests/           # Format code
+uv run isort src/ tests/           # Sort imports
+uv run flake8 src/ tests/          # Lint code
+uv run mypy src/                   # Type checking
+uv run bandit -r src/              # Security scanning
+
+# Run all quality checks
+uv run pre-commit run --all-files
+
+# Clean cache files
+find . -type d -name "__pycache__" -exec rm -rf {} +
+find . -type f -name "*.pyc" -delete
+rm -rf .pytest_cache .mypy_cache .coverage htmlcov/
+```
+
+### Test Categories
+
+- **Unit Tests** (`tests/unit/`): Test individual components in isolation
+- **Integration Tests** (`tests/integration/`): Test interactions with external APIs
+- **Security Tests** (`tests/security/`): Test security features and protections
+
+### Test Coverage
+
+The test suite includes:
+- **Unit Tests**: Server initialization, configuration, authentication
+- **Integration Tests**: Real API interaction (when API key available)
+- **Security Tests**: API key protection, input validation, error handling
+- **Edge Case Tests**: Malformed specs, network errors, timeouts
+
+## Adding Custom Tools
+
+To add your own tools alongside the auto-generated ones, modify the `_register_custom_tools` method in `hdx_mcp_server.py`:
+
+```python
+def _register_custom_tools(self):
+    """Register custom tools alongside the OpenAPI-derived ones."""
+
+    @self.mcp.tool("my_custom_tool")
+    async def my_custom_tool(param1: str, param2: int = 10) -> Dict[str, Any]:
+        """
+        Description of my custom tool.
+
+        Args:
+            param1: Description of parameter 1
+            param2: Description of parameter 2 with default value
+
+        Returns:
+            Dictionary containing the results
+        """
+        # Your custom tool implementation
+        return {"result": "success", "data": param1}
+```
+
+### Adding New Endpoints
+
+New HDX API endpoints are automatically included when the OpenAPI specification is updated. No code changes are required.
+
+### Adding Custom Tools Process
+
+1. Add your tool function in the `_register_custom_tools` method
+2. Include proper type hints and documentation
+3. Add corresponding tests in `test_hdx_mcp_server.py`
+4. Update the README with documentation for your tool
+
 ---
 
 Thank you for contributing to HDX MCP Server! 🚀
