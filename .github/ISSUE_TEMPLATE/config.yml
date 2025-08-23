@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 HDX HAPI Documentation
+    url: https://hdx-hapi.readthedocs.io/
+    about: Official HDX HAPI documentation for API-related questions
+  - name: 🔗 Model Context Protocol Specification
+    url: https://modelcontextprotocol.io/
+    about: MCP protocol specification and documentation
+  - name: 💬 GitHub Discussions
+    url: https://github.com/dividor/hdx-mcp/discussions
+    about: Ask questions and discuss ideas with the community
