@@ -1,4 +1,4 @@
-# 🌍 HDX MCP Server
+# <img src="./assets/hdx_mcp_icon_transparent_512.png" alt="HDX MCP" height="32"> HDX MCP Server
 
 <div align="center">
   <img src="./assets/chad-people-in-need.png" alt="HDX MCP Server used in Claude Desktop" width="65%">
