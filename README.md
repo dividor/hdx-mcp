@@ -52,8 +52,6 @@ This server automatically generates MCP tools from the HDX OpenAPI specification
 - `hdx_get_dataset_info` - Get detailed dataset info
 - `hdx_search_locations` - Search for locations
 
-
-
 **⚠️ Critical**: Always use `metadata_data_availability_get` first to check data coverage - it varies significantly by country and administrative level.
 
 ### Caveats
