@@ -129,4 +129,4 @@ jobs:
         uv run pytest tests/integration/ -v
       env:
         # Integration tests can run without API key (they skip if not available)
-        HDX_API_KEY: ${{ secrets.HDX_API_KEY }}
+        HDX_APP_IDENTIFIER: ${{ secrets.HDX_APP_IDENTIFIER }}
