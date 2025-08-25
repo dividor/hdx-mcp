@@ -12,7 +12,7 @@ A Model Context Protocol (MCP) server that provides AI assistants access to the 
 
 This server can be installed in AI platforms such as Claude Desktop, as well as run as a remote MCP server for any AI to access.
 
-## Available Tools (33 Total)
+## Available Tools
 
 ### 🔍 Metadata & Discovery (12 tools)
 - `metadata_location_get` - Get countries/locations in HDX
@@ -51,7 +51,7 @@ This server can be installed in AI platforms such as Claude Desktop, as well as 
 - `food_security_nutrition_poverty_food_prices_get` - Get food prices
 - `food_security_nutrition_poverty_poverty_rate_get` - Get poverty rates
 
-### 🔧 Utilities (1 tools)
+### 🔧 Utilities (1 tool)
 - `util_version_get` - Get API version
 
 ### 🎯 Custom HDX Tools (3 tools)
