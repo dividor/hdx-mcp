@@ -53,6 +53,10 @@ When working with population data in HDX, these tools are most useful:
 
 ## ⚠️ CRITICAL: Never Manually Aggregate Population Data
 
+**IMPORTANT: Never sum data yourself, only take the data verbatum
+from the tool. If you do not have data at the correct aggregate
+level, inform the user.**
+
 **NEVER aggregate totals yourself to answer a question if you do not have the values "
 "already aggregated from the tool.**
 

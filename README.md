@@ -83,13 +83,13 @@ Then set up the MCP server ...
 4. `uv sync --all-extras --dev`
 5. `cp env.example .env`
 6. Then Edit your `.env` and set `HDX_APP_IDENTIFIER` to the application identifier you created above
-7. Run the server: `uv run hdx-mcp-server --transport http --host 0.0.0.0 --port 9000 --verbose`
+7. Run the server: `uv run hdx-mcp-server --transport http --host 0.0.0.0 --port 8000 --verbose`
 
 You can use MCP Inspector to test the server ...
 
 1. [Install MCP Inspector](https://modelcontextprotocol.io/legacy/tools/inspector)
 2. Set Transport type (top-left) to be: Streamable HTTP
-3. Enter URL: `http://127.0.0.1:9000/mcp`
+3. Enter URL: `http://127.0.0.1:8000/mcp`
 4. Click Connect
 5. Click on Tools or Prompts, and use the get and submit buttons to try out the server
 

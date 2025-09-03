@@ -846,6 +846,7 @@ class HDXMCPServer:
 
         aggregation_warning = (
             "\n\n⚠️ **CRITICAL - Never Manually Aggregate Data**: "
+            "IMPORTANT: Never sum data yourself, only take the data verbatim from the tool. "
             "NEVER aggregate totals yourself to answer a question if you do not have the values "
             "already aggregated from the tool. "
             "Do NOT sum up individual records, calculate country-wide statistics from subnational data, "
