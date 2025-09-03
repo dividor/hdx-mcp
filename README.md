@@ -82,7 +82,15 @@ Then install using Docker MCP Hub and MCP Toolkit (recommended) ...
 3. Under 'MCP Tools' search for 'HDX' and add the server
 4. When prompted input your app identifier from above
 
-You can now use with various clients such as Claude Desktop (see 'Clients' section in Docker).
+You can now use with various clients such as Claude Desktop (see 'Clients' section in Docker). To install using Claude Desktop ...
+
+1. Install [Claude Desktop](https://claude.ai/download)
+2. In Docker 'MCP Toolkit' select Clients and click 'Connect' next to Claude
+3. Restart Claude desktop
+4. Click the little slider icon 'Search and tools' on chat input box
+5. Toggle on 'MCP_DOCKER'
+
+Try asking 'What's the population of Mali on HDX?'.
 
 ## Other ways to use the HDX MCP Server
 ### UV to run a Remote Server
