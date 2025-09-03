@@ -67,7 +67,7 @@ The MCP server provided prompts for helping LLMs identify and inform the user, b
 
 ## Quick Start
 
-Get a HDX API 'Application identifier' code ...
+Get a free HDX API 'Application identifier' code ...
 
 1. Go to the [api page](https://hapi.humdata.org/docs#/Generate%20App%20Identifier/get_encoded_identifier_api_v2_encode_app_identifier_get)
 2. On the 'encode_app_identifier' endpoint, click 'Try it out'
@@ -75,7 +75,16 @@ Get a HDX API 'Application identifier' code ...
 4. Click 'Execute'
 5. Make note of the displayed application identifier code
 
-Then set up the MCP server ...
+Then install using Docker MCP Hub and MCP Toolkit (recommended) ...
+
+1. Install [Docker Desktop](https://docs.docker.com/desktop/) 4.43 or above and start
+2. Activate 'MCP Tools' under Settings > Beta Features
+3. Under 'MCP Tools' search for 'HDX' and add the server
+4. When prompted input your app identifier from above
+
+You can now use with various clients such as Claude Desktop (see 'Clients' section in Docker).
+
+### Other ways to use the HDX MCP Server
 
 1. Install UV (if not already installed): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 2. Clone this repo: `git clone https://github.com/dividor/hdx-mcp.git`
