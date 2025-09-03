@@ -65,7 +65,7 @@ The HDX API offers a very rich source of Humanitarian data, but it is complex. T
 
 The MCP server provided prompts for helping LLMs identify and inform the user, but as with any LLM application, evaluation testing and ongoing monitoring is required.
 
-## Quick Start
+## Quick Start (with Docker MCP Catalog and Tools)
 
 Get a free HDX API 'Application identifier' code ...
 
@@ -85,7 +85,7 @@ Then install using Docker MCP Hub and MCP Toolkit (recommended) ...
 You can now use with various clients such as Claude Desktop (see 'Clients' section in Docker).
 
 ## Other ways to use the HDX MCP Server
-### Using UV
+### UV to run a Remote Server
 1. Install UV (if not already installed): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 2. Clone this repo: `git clone https://github.com/dividor/hdx-mcp.git`
 3. `cd hdx-mcp`
@@ -94,15 +94,7 @@ You can now use with various clients such as Claude Desktop (see 'Clients' secti
 6. Then Edit your `.env` and set `HDX_APP_IDENTIFIER` to the application identifier you created above
 7. Run the server: `uv run hdx-mcp-server --transport http --host 0.0.0.0 --port 8000 --verbose`
 
-You can use MCP Inspector to test the server ...
-
-1. [Install MCP Inspector](https://modelcontextprotocol.io/legacy/tools/inspector)
-2. Set Transport type (top-left) to be: Streamable HTTP
-3. Enter URL: `http://127.0.0.1:8000/mcp`
-4. Click Connect
-5. Click on Tools or Prompts, and use the get and submit buttons to try out the server
-
-### Using Docker to Run a Remote Server
+### Docker to Run a Remote Server
 
 ```bash
 # Build the Docker image
@@ -116,7 +108,17 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
 ```
 
+## Testing the server with Inspector
+
+1. [Install MCP Inspector](https://modelcontextprotocol.io/legacy/tools/inspector)
+2. Set Transport type (top-left) to be: Streamable HTTP
+3. Enter URL: `http://127.0.0.1:8000/mcp`
+4. Click Connect
+5. Click on Tools or Prompts, and use the get and submit buttons to try out the server
+
 ## HDX MCP Server in Claude Desktop
+
+The easiest way to use with Claude Desktop is to use DOcker MCP Tools as indicated above. You can also install as follows ...
 
 1. **Complete the basic setup above** - ensure the server works with `uv run hdx-mcp-server`
 
