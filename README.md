@@ -65,7 +65,7 @@ The HDX API offers a very rich source of Humanitarian data, but it is complex. T
 
 The MCP server provided prompts for helping LLMs identify and inform the user, but as with any LLM application, evaluation testing and ongoing monitoring is required.
 
-## Quick Start (with Docker MCP Catalog and Tools)
+## Quick Start (with Docker MCP Tools)
 
 Get a free HDX API 'Application identifier' code ...
 
