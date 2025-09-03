@@ -163,8 +163,6 @@ The easiest way to use with Claude Desktop is to use DOcker MCP Tools as indicat
 
 5. **Restart Claude Desktop** to load the new MCP server
 
-### Verification
-
 Once configured, you should see the HDX server appear in Claude's MCP servers list.
 
 ## Configuration
