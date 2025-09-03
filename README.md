@@ -84,8 +84,8 @@ Then install using Docker MCP Hub and MCP Toolkit (recommended) ...
 
 You can now use with various clients such as Claude Desktop (see 'Clients' section in Docker).
 
-### Other ways to use the HDX MCP Server
-
+## Other ways to use the HDX MCP Server
+### Using UV
 1. Install UV (if not already installed): `curl -LsSf https://astral.sh/uv/install.sh | sh`
 2. Clone this repo: `git clone https://github.com/dividor/hdx-mcp.git`
 3. `cd hdx-mcp`
@@ -102,7 +102,7 @@ You can use MCP Inspector to test the server ...
 4. Click Connect
 5. Click on Tools or Prompts, and use the get and submit buttons to try out the server
 
-### Option 2: Using Docker (Recommended for Claude Desktop)
+### Using Docker to Run a Remote Server
 
 ```bash
 # Build the Docker image
@@ -116,7 +116,7 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
 ```
 
-## Using the HDX MCP Server in Claude Desktop
+## HDX MCP Server in Claude Desktop
 
 1. **Complete the basic setup above** - ensure the server works with `uv run hdx-mcp-server`
 
@@ -163,11 +163,7 @@ docker run --rm -p 8000:8000 --env-file .env hdx-mcp-server --transport http --h
 
 ### Verification
 
-Once configured, you should see the HDX server appear in Claude's MCP servers list. You can test it by asking Claude to:
-
-- "List available HDX tools"
-- "What is the population of Chad?"
-- "Give me a summary of refugee status in Syria"
+Once configured, you should see the HDX server appear in Claude's MCP servers list.
 
 ## Configuration
 
@@ -203,52 +199,6 @@ nano .env
 
 The server automatically excludes the following endpoints:
 - `/api/v2/encode_app_identifier` - Internal utility for generating app identifiers
-
-## Security Considerations
-
-This server follows MCP security best practices:
-
-### Authentication & Authorization
-- ✅ API keys stored in environment variables, never hardcoded
-- ✅ API keys not logged or exposed in error messages
-- ✅ Proper HTTP client configuration with timeouts
-- ✅ Base64 encoding for app identifiers as required by HDX
-
-### Input Validation
-- ✅ FastMCP handles input schema validation automatically
-- ✅ Custom tools include proper type hints and validation
-- ✅ Error handling prevents information leakage
-
-### Network Security
-- ✅ HTTPS-only communication with HDX API
-- ✅ Configurable timeouts to prevent hanging connections
-- ✅ Proper error handling for network failures
-
-### Data Handling
-- ✅ No persistent data storage
-- ✅ Proper cleanup of HTTP connections
-- ✅ Graceful shutdown handling
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"Required environment variable HDX_APP_IDENTIFIER is not set"**
-   - Ensure you have copied `.env.example` to `.env`
-   - Verify your HDX application identifier is correctly set in `.env`
-
-2. **"Failed to load OpenAPI specification"**
-   - Check your internet connection
-   - Verify HDX API is accessible: `curl https://hapi.humdata.org/openapi.json`
-
-3. **HTTP transport not accessible.**
-   - Check if the port is already in use
-   - Verify firewall settings if accessing remotely
-   - Use `--host 0.0.0.0` for external access
-
-4. **Authentication errors**
-   - Verify your HDX API app identifier is valid
-   - Check if your account has necessary permissions
 
 ### Logging
 
